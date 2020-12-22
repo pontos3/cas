@@ -126,9 +126,9 @@ public class OAuth20IntrospectionEndpointController extends BaseOAuth20Controlle
     protected OAuth20IntrospectionAccessTokenResponse createIntrospectionValidResponse(final OAuthRegisteredService service,
         final OAuth20AccessToken ticket) {
         val introspect = new OAuth20IntrospectionAccessTokenResponse();
-        introspect.setClientId(service.getClientId());
+        introspect.setClientId(ticket.getClientId());
         introspect.setScope("CAS");
-        introspect.setAud(service.getServiceId());
+        introspect.setAud(ticket.getService().getId());
         introspect.setIss(getOAuthConfigurationContext().getCasProperties().getAuthn().getOidc().getIssuer());
 
         if (ticket != null) {
